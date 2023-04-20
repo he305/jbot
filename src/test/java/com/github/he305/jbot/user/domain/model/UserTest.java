@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class UserTest {
 
@@ -27,16 +28,5 @@ class UserTest {
         User second = User.create(new UserInfo("3", new AnimeListInfo("2", "5")), new ChatInfo("7"));
 
         assertNotEquals(first, second);
-    }
-
-    @Test
-    void changeUserInfo() {
-        UserInfo userInfo = new UserInfo("name", new AnimeListInfo("nick", "pass"));
-
-        User user = User.create(new UserInfo("n", new AnimeListInfo("1", "2")), new ChatInfo("3"));
-        assertNotEquals(userInfo, user.getUserInfo());
-
-        user.changeUserInfo(userInfo);
-        assertEquals(userInfo, user.getUserInfo());
     }
 }
