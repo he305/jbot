@@ -1,1 +1,10 @@
-
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      username: root
+      password: pass
+      database: anime-releases
+      port: 27017
+      host: localhost
+      uuid-representation: standard
