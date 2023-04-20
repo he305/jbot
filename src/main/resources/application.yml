@@ -1,4 +1,9 @@
+server:
+  port: 7500
+
 spring:
+  application:
+    name: jbot
   data:
     mongodb:
       authentication-database: admin
@@ -8,3 +13,23 @@ spring:
       port: 27017
       host: localhost
       uuid-representation: standard
+
+management:
+  endpoint:
+    health:
+      show-components: always
+      show-details: always
+      status:
+        http-mapping:
+          up: 207
+  endpoints:
+    web:
+      exposure:
+        include: health, info, env, beans, metrics
+  info:
+    env:
+      enabled: true
+info:
+  app:
+    name: JBot
+    version: 1.0.0
