@@ -1,5 +1,6 @@
 package com.github.he305.jbot.user.infra.mapper;
 
+import com.github.he305.jbot.integration.IntegrationTestBase;
 import com.github.he305.jbot.user.domain.model.User;
 import com.github.he305.jbot.user.domain.model.entities.AnimeListInfo;
 import com.github.he305.jbot.user.domain.model.enums.AnimeAudioSource;
@@ -13,14 +14,12 @@ import com.github.he305.jbot.user.infra.data.postgresql.UserInfoJpa;
 import com.github.he305.jbot.user.infra.data.postgresql.UserJpa;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
-class UserPostgresMapperTest {
+class UserPostgresMapperTest extends IntegrationTestBase {
     // private final UserPostgresMapperImpl mapper = new UserPostgresMapperImpl();
 
     @Autowired
