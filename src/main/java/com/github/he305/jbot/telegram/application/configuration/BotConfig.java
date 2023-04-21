@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Data
 public class BotConfig {
-    @Value("${telegram-name}")
+    @Value("${telegram-name:sample}")
     private String telegramName;
-    @Value("${telegram-id}")
+    @Value("${telegram-id:1234}")
     private String telegramId;
 }
