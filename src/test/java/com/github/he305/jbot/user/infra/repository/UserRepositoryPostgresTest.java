@@ -1,9 +1,9 @@
 package com.github.he305.jbot.user.infra.repository;
 
 import com.github.he305.jbot.user.domain.model.User;
-import com.github.he305.jbot.user.infra.data.UserDataMongo;
-import com.github.he305.jbot.user.infra.jpa.UserJpa;
-import com.github.he305.jbot.user.infra.mapper.UserMongoMapper;
+import com.github.he305.jbot.user.infra.data.postgresql.UserJpa;
+import com.github.he305.jbot.user.infra.jpa.UserPostgresJpa;
+import com.github.he305.jbot.user.infra.mapper.UserPostgresMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,22 +18,22 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
-class UserRepositoryMongoTest {
+class UserRepositoryPostgresTest {
 
     @Mock
-    private UserMongoMapper mapper;
+    private UserPostgresMapper mapper;
     @Mock
-    private UserJpa userJpa;
+    private UserPostgresJpa userJpa;
 
     @InjectMocks
-    private UserRepositoryMongo underTest;
+    private UserRepositoryPostgres underTest;
 
     @Test
     void getAll() {
         User expected = new User(UUID.randomUUID(), null, null);
-        UserDataMongo data = new UserDataMongo();
+        UserJpa data = new UserJpa();
 
-        Mockito.when(mapper.dataToDomainCollection(List.of(data))).thenReturn(List.of(expected));
+        Mockito.when(mapper.dataToDomain(data)).thenReturn(expected);
         Mockito.when(userJpa.findAll()).thenReturn(List.of(data));
 
         List<User> actualList = underTest.getAll();
@@ -44,7 +44,7 @@ class UserRepositoryMongoTest {
     @Test
     void save() {
         User expected = new User(UUID.randomUUID(), null, null);
-        UserDataMongo data = new UserDataMongo();
+        UserJpa data = new UserJpa();
 
         Mockito.when(mapper.domainToData(expected)).thenReturn(data);
 

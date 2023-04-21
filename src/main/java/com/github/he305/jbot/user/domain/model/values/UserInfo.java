@@ -10,10 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserInfo {
     private String name;
-    private AnimeListInfo animeListInfo;
 
-    public UserInfo(String name, AnimeListInfo animeListInfo) {
+    public UserInfo(String name) {
         this.name = StringValidator.validate(name);
-        this.animeListInfo = animeListInfo;
     }
 }
