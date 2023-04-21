@@ -1,7 +1,6 @@
 package com.github.he305.jbot.telegram.application.configuration;
 
 import com.github.he305.jbot.telegram.application.TelegramBot;
-import com.github.he305.jbot.telegram.domain.abstractions.ChatUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -16,13 +15,11 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 public class Initializer {
     @Autowired
     BotConfig botConfig;
-    @Autowired
-    ChatUserRepository repository;
 
     @EventListener({ContextRefreshedEvent.class})
     public void init() {
         try {
-            TelegramBot bot = new TelegramBot(botConfig.getTelegramId(), botConfig.getTelegramName(), repository);
+            TelegramBot bot = new TelegramBot(botConfig);
 
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
             telegramBotsApi.registerBot(bot);
