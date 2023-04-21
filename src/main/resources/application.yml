@@ -29,3 +29,7 @@ info:
   app:
     name: JBot
     version: 1.0.0
+
+telegram:
+  name: ${telegram-name}
+  id: ${telegram-id}
