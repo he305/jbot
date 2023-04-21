@@ -1,26 +1,38 @@
 package com.github.he305.jbot.user.domain.model;
 
+import com.github.he305.jbot.user.domain.exceptions.AnimeListInfoAlreadyExist;
+import com.github.he305.jbot.user.domain.model.entities.AnimeListInfo;
+import com.github.he305.jbot.user.domain.model.enums.AnimeAudioSource;
+import com.github.he305.jbot.user.domain.model.enums.AnimeSubsSource;
 import com.github.he305.jbot.user.domain.model.values.ChatInfo;
 import com.github.he305.jbot.user.domain.model.values.UserInfo;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.ToString;
+import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
-@EqualsAndHashCode(of = "userId")
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
 @ToString
 public class User {
-    private final @NonNull UUID userId;
-    private final @NonNull UserInfo userInfo;
-    private final @NonNull ChatInfo chatInfo;
+    private UUID id;
+    private UserInfo userInfo;
+    private ChatInfo chatInfo;
+    private AnimeAudioSource audioSource = AnimeAudioSource.JAPANESE;
 
-    public User(UUID userId, UserInfo userInfo, ChatInfo chatInfo) {
-        this.userId = userId;
+    private AnimeSubsSource subsSource = AnimeSubsSource.NONE;
+
+    private List<AnimeListInfo> animeListInfoList;
+
+    public User(UUID id, UserInfo userInfo, ChatInfo chatInfo) {
+        this.id = id;
         this.userInfo = userInfo;
         this.chatInfo = chatInfo;
+        this.animeListInfoList = new ArrayList<>();
     }
 
     public static User create(UserInfo userInfo, ChatInfo chatInfo) {
@@ -31,5 +43,21 @@ public class User {
 
     public static User getExistent(UUID id, UserInfo userInfo, ChatInfo chatInfo) {
         return new User(id, userInfo, chatInfo);
+    }
+
+    public void addAnimeListInfo(AnimeListInfo info) {
+        if (animeListInfoList.stream().anyMatch(existing -> existing.equals(info))) {
+            throw new AnimeListInfoAlreadyExist(info);
+        }
+
+        animeListInfoList.add(info);
+    }
+
+    public void setAudioSource(AnimeAudioSource newSource) {
+        this.audioSource = newSource;
+    }
+
+    public void setSubsSource(AnimeSubsSource newSource) {
+        this.subsSource = newSource;
     }
 }
