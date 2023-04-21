@@ -4,15 +4,11 @@ server:
 spring:
   application:
     name: jbot
-  data:
-    mongodb:
-      authentication-database: admin
-      username: root
-      password: pass
-      database: anime-releases
-      port: 27017
-      host: localhost
-      uuid-representation: standard
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5445/animebot
+    username: admin
+    password: admin
+
 
 management:
   endpoint:

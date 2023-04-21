@@ -1,10 +1,10 @@
-package com.github.he305.jbot;
+package com.github.he305.jbot.integration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JbotApplicationTests {
+class SimpleSpringBootRunTest extends IntegrationTestBase {
 
 	@Test
 	void contextLoads() {
