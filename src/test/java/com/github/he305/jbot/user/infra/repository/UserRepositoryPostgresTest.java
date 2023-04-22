@@ -1,6 +1,8 @@
 package com.github.he305.jbot.user.infra.repository;
 
 import com.github.he305.jbot.user.domain.model.User;
+import com.github.he305.jbot.user.domain.model.values.ChatInfo;
+import com.github.he305.jbot.user.infra.data.postgresql.ChatInfoJpa;
 import com.github.he305.jbot.user.infra.data.postgresql.UserJpa;
 import com.github.he305.jbot.user.infra.jpa.UserPostgresJpa;
 import com.github.he305.jbot.user.infra.mapper.UserPostgresMapper;
@@ -12,10 +14,10 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserRepositoryPostgresTest {
@@ -49,5 +51,20 @@ class UserRepositoryPostgresTest {
         Mockito.when(mapper.domainToData(expected)).thenReturn(data);
 
         assertDoesNotThrow(() -> underTest.save(expected));
+    }
+
+    @Test
+    void getByChatId() {
+        ChatInfo chatInfo = new ChatInfo("123");
+        ChatInfoJpa jpa = new ChatInfoJpa(chatInfo.getChatId());
+
+        UserJpa returned = Mockito.mock(UserJpa.class);
+        User expected = Mockito.mock(User.class);
+        Mockito.when(userJpa.findByChatInfo(jpa)).thenReturn(Optional.of(returned));
+        Mockito.when(mapper.dataToDomain(returned)).thenReturn(expected);
+
+        Optional<User> actualOpt = underTest.getByChatId(chatInfo);
+        assertTrue(actualOpt.isPresent());
+        assertEquals(expected, actualOpt.get());
     }
 }
