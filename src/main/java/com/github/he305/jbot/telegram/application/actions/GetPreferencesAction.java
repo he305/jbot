@@ -8,22 +8,26 @@ import org.telegram.abilitybots.api.objects.MessageContext;
 
 @Component
 @RequiredArgsConstructor
-public class StartAction implements SingleReplyAction {
+public class GetPreferencesAction implements SingleReplyAction {
     private final GetUserByContextQuery getUserByContextQuery;
 
     @Override
     public String getCommand() {
-        return "start";
+        return "get_preferences";
     }
 
     @Override
     public String getDescription() {
-        return "registration command";
+        return "display current anime source preferences";
     }
 
     @Override
     public String getMessage(MessageContext context) {
         User user = getUserByContextQuery.execute(context);
-        return String.format("Hello, %s! Feel free to use /help command", user.getUserInfo().getName());
+
+        String audioSourceString = String.valueOf(user.getAudioSource()).toLowerCase();
+        String subsSourceString = String.valueOf(user.getSubsSource()).toLowerCase();
+
+        return String.format("Audio source: %s, subs source: %s", audioSourceString, subsSourceString);
     }
 }

@@ -1,7 +1,7 @@
 package com.github.he305.jbot.user.infra.data.postgresql;
 
-import com.github.he305.jbot.user.domain.model.enums.AnimeAudioSource;
-import com.github.he305.jbot.user.domain.model.enums.AnimeSubsSource;
+import com.github.he305.jbot.common.enums.AnimeAudioSource;
+import com.github.he305.jbot.common.enums.AnimeSubsSource;
 import jakarta.persistence.*;
 import lombok.*;
 
