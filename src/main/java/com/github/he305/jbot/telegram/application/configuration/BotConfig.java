@@ -11,4 +11,6 @@ public class BotConfig {
     private String telegramName;
     @Value("${telegram-id:1234}")
     private String telegramId;
+    @Value("${telegram-creator-id:1270875482}")
+    private long telegramCreatorId;
 }
