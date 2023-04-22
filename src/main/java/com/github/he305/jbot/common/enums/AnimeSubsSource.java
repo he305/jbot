@@ -1,4 +1,4 @@
-package com.github.he305.jbot.user.domain.model.enums;
+package com.github.he305.jbot.common.enums;
 
 public enum AnimeSubsSource {
     NONE,

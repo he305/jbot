@@ -1,10 +1,10 @@
 package com.github.he305.jbot.user.infra.mapper;
 
+import com.github.he305.jbot.common.enums.AnimeAudioSource;
+import com.github.he305.jbot.common.enums.AnimeSubsSource;
 import com.github.he305.jbot.user.domain.model.User;
 import com.github.he305.jbot.user.domain.model.entities.AnimeListInfo;
-import com.github.he305.jbot.user.domain.model.enums.AnimeAudioSource;
 import com.github.he305.jbot.user.domain.model.enums.AnimeListType;
-import com.github.he305.jbot.user.domain.model.enums.AnimeSubsSource;
 import com.github.he305.jbot.user.domain.model.values.ChatInfo;
 import com.github.he305.jbot.user.domain.model.values.UserInfo;
 import com.github.he305.jbot.user.infra.data.postgresql.AnimeListInfoJpa;

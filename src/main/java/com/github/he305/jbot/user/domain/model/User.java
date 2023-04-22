@@ -1,9 +1,9 @@
 package com.github.he305.jbot.user.domain.model;
 
+import com.github.he305.jbot.common.enums.AnimeAudioSource;
+import com.github.he305.jbot.common.enums.AnimeSubsSource;
 import com.github.he305.jbot.user.domain.exceptions.AnimeListInfoAlreadyExist;
 import com.github.he305.jbot.user.domain.model.entities.AnimeListInfo;
-import com.github.he305.jbot.user.domain.model.enums.AnimeAudioSource;
-import com.github.he305.jbot.user.domain.model.enums.AnimeSubsSource;
 import com.github.he305.jbot.user.domain.model.values.ChatInfo;
 import com.github.he305.jbot.user.domain.model.values.UserInfo;
 import lombok.*;
