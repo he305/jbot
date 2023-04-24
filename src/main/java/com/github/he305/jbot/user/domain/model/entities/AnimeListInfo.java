@@ -17,6 +17,7 @@ public class AnimeListInfo {
     private UUID id;
     private String nickname;
     private String password;
+    private String authorizationCode;
     private AnimeListType animeListType;
 
     public AnimeListInfo(String nickname, String password, AnimeListType type) {
@@ -32,6 +33,18 @@ public class AnimeListInfo {
         this.nickname = StringValidator.validate(nickname);
         this.password = StringValidator.validate(password);
         this.animeListType = type;
+    }
+
+    public AnimeListInfo(String authorizationCode, AnimeListType type) {
+        this.id = UUID.randomUUID();
+
+        this.authorizationCode = authorizationCode;
+        this.animeListType = type;
+    }
+
+    public AnimeListInfo(UUID id, String authorizationCode, AnimeListType type) {
+        this(authorizationCode, type);
+        this.id = id;
     }
 
     public void changePassword(String newPassword) {
