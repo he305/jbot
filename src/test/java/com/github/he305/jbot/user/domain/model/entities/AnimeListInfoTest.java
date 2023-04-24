@@ -2,6 +2,7 @@ package com.github.he305.jbot.user.domain.model.entities;
 
 import com.github.he305.jbot.common.exceptions.StringValidationException;
 import com.github.he305.jbot.user.domain.model.enums.AnimeListType;
+import com.github.he305.jbot.user.domain.model.values.TokenInfo;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
@@ -12,11 +13,11 @@ class AnimeListInfoTest {
 
     @Test
     void authorizationOnly() {
-        String auth = "auth";
-        AnimeListInfo info = new AnimeListInfo(UUID.randomUUID(), auth, AnimeListType.MYANIMELIST);
+        TokenInfo token = new TokenInfo("123", "345", 50);
+        AnimeListInfo info = new AnimeListInfo(UUID.randomUUID(), token, AnimeListType.MYANIMELIST);
         assertNull(info.getNickname());
         assertNull(info.getPassword());
-        assertEquals(auth, info.getAuthorizationCode());
+        assertEquals(token, info.getTokenInfo());
     }
 
     @Test

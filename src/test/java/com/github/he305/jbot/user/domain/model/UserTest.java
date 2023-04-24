@@ -4,6 +4,7 @@ import com.github.he305.jbot.user.domain.exceptions.AnimeListInfoAlreadyExist;
 import com.github.he305.jbot.user.domain.model.entities.AnimeListInfo;
 import com.github.he305.jbot.user.domain.model.enums.AnimeListType;
 import com.github.he305.jbot.user.domain.model.values.ChatInfo;
+import com.github.he305.jbot.user.domain.model.values.TokenInfo;
 import com.github.he305.jbot.user.domain.model.values.UserInfo;
 import org.junit.jupiter.api.Test;
 
@@ -51,7 +52,7 @@ class UserTest {
     @Test
     void animeListInfoWithTypeExists() {
         User user = User.create(new UserInfo("123"), new ChatInfo("13"));
-        AnimeListInfo listInfo = new AnimeListInfo("13", AnimeListType.MYANIMELIST);
+        AnimeListInfo listInfo = new AnimeListInfo(new TokenInfo(), AnimeListType.MYANIMELIST);
 
         boolean beforeAdded = user.animeListInfoWithTypeExists(AnimeListType.MYANIMELIST);
         assertFalse(beforeAdded);
@@ -68,7 +69,7 @@ class UserTest {
         assertFalse(beforeAdded);
 
 
-        AnimeListInfo listInfo = new AnimeListInfo("13", AnimeListType.MYANIMELIST);
+        AnimeListInfo listInfo = new AnimeListInfo(new TokenInfo(), AnimeListType.MYANIMELIST);
         user.addAnimeListInfo(listInfo);
         boolean afterAdded = user.removeAnimeListInfoType(AnimeListType.MYANIMELIST);
         assertTrue(afterAdded);
