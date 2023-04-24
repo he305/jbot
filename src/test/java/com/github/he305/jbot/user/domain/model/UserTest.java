@@ -47,4 +47,33 @@ class UserTest {
 
         assertThrows(AnimeListInfoAlreadyExist.class, () -> user.addAnimeListInfo(second));
     }
+
+    @Test
+    void animeListInfoWithTypeExists() {
+        User user = User.create(new UserInfo("123"), new ChatInfo("13"));
+        AnimeListInfo listInfo = new AnimeListInfo("13", AnimeListType.MYANIMELIST);
+
+        boolean beforeAdded = user.animeListInfoWithTypeExists(AnimeListType.MYANIMELIST);
+        assertFalse(beforeAdded);
+
+        user.addAnimeListInfo(listInfo);
+        boolean afterAdded = user.animeListInfoWithTypeExists(AnimeListType.MYANIMELIST);
+        assertTrue(afterAdded);
+    }
+
+    @Test
+    void removeAnimeListInfoType() {
+        User user = User.create(new UserInfo("123"), new ChatInfo("13"));
+        boolean beforeAdded = user.removeAnimeListInfoType(AnimeListType.MYANIMELIST);
+        assertFalse(beforeAdded);
+
+
+        AnimeListInfo listInfo = new AnimeListInfo("13", AnimeListType.MYANIMELIST);
+        user.addAnimeListInfo(listInfo);
+        boolean afterAdded = user.removeAnimeListInfoType(AnimeListType.MYANIMELIST);
+        assertTrue(afterAdded);
+
+        boolean afterAddedAndRemoved = user.removeAnimeListInfoType(AnimeListType.MYANIMELIST);
+        assertFalse(afterAddedAndRemoved);
+    }
 }
