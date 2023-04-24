@@ -1,12 +1,15 @@
 package com.github.he305.jbot.anime.application.services;
 
+import com.github.he305.jbot.integration.IntegrationTestBase;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CodeChallengeProviderImplTest {
+class CodeChallengeProviderImplTest extends IntegrationTestBase {
 
-    private final CodeChallengeProviderImpl underTest = new CodeChallengeProviderImpl();
+    @Autowired
+    private CodeChallengeProviderImpl underTest;
 
     @Test
     void getCodeChallenge() {
