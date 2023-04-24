@@ -4,12 +4,14 @@ import com.github.he305.jbot.common.enums.AnimeAudioSource;
 import com.github.he305.jbot.common.enums.AnimeSubsSource;
 import com.github.he305.jbot.user.domain.exceptions.AnimeListInfoAlreadyExist;
 import com.github.he305.jbot.user.domain.model.entities.AnimeListInfo;
+import com.github.he305.jbot.user.domain.model.enums.AnimeListType;
 import com.github.he305.jbot.user.domain.model.values.ChatInfo;
 import com.github.he305.jbot.user.domain.model.values.UserInfo;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Getter
@@ -46,11 +48,20 @@ public class User {
     }
 
     public void addAnimeListInfo(AnimeListInfo info) {
-        if (animeListInfoList.stream().anyMatch(existing -> existing.equals(info))) {
+        if (animeListInfoList.stream().anyMatch(existing -> existing.getAnimeListType().equals(info.getAnimeListType()))) {
             throw new AnimeListInfoAlreadyExist(info);
         }
 
         animeListInfoList.add(info);
+    }
+
+    public boolean animeListInfoWithTypeExists(AnimeListType type) {
+        return animeListInfoList.stream().anyMatch(al -> al.getAnimeListType().equals(type));
+    }
+
+    public boolean removeAnimeListInfoType(AnimeListType type) {
+        Optional<AnimeListInfo> animeListInfo = animeListInfoList.stream().filter(al -> al.getAnimeListType().equals(type)).findFirst();
+        return animeListInfo.map(info -> animeListInfoList.remove(info)).orElse(false);
     }
 
     public void setAudioSource(AnimeAudioSource newSource) {

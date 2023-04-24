@@ -12,6 +12,7 @@ CREATE TABLE anime_list_info (
     type smallint,
     nickname VARCHAR(255),
     password VARCHAR(255),
+    authorization_code TEXT,
     user_id uuid,
     PRIMARY KEY(id)
 );
