@@ -26,8 +26,14 @@ public class AnimeListInfoJpa {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "authorization_code", columnDefinition = "TEXT")
-    private String authorizationCode;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "accessToken", column = @Column(name = "access_token", columnDefinition = "TEXT")),
+            @AttributeOverride(name = "refreshToken", column = @Column(name = "refresh_token", columnDefinition = "TEXT")),
+            @AttributeOverride(name = "expiresAt", column = @Column(name = "expires_at", columnDefinition = "TIMESTAMP"))
+    })
+    private TokenInfoJpa tokenInfo;
 
     @Enumerated
     @Column(name = "type")
