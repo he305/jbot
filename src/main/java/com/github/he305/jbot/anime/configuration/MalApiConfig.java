@@ -9,4 +9,7 @@ import org.springframework.stereotype.Component;
 public class MalApiConfig {
     @Value("${mal-client-id:none}")
     private String clientId;
+
+    @Value("${mal-client-secret:none}")
+    private String clientSecret;
 }
