@@ -26,6 +26,9 @@ public class AnimeListInfoJpa {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "authorization_code")
+    private String authorizationCode;
+
     @Enumerated
     @Column(name = "type")
     private AnimeListType animeListType;

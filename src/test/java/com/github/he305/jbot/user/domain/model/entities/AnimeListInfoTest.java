@@ -9,6 +9,16 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AnimeListInfoTest {
+
+    @Test
+    void authorizationOnly() {
+        String auth = "auth";
+        AnimeListInfo info = new AnimeListInfo(UUID.randomUUID(), auth, AnimeListType.MYANIMELIST);
+        assertNull(info.getNickname());
+        assertNull(info.getPassword());
+        assertEquals(auth, info.getAuthorizationCode());
+    }
+
     @Test
     void not_equals() {
         String nickname = "nick";
