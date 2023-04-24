@@ -1,6 +1,6 @@
 package com.github.he305.jbot.anime.application.services;
 
-import com.github.he305.jbot.anime.dtos.TokenDto;
+import com.github.he305.jbot.anime.application.dtos.TokenDto;
 
 public interface MalAuthenticationService {
     TokenDto getToken(String authorizationCode);

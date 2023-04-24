@@ -1,7 +1,7 @@
 package com.github.he305.jbot.anime.application.services;
 
+import com.github.he305.jbot.anime.application.dtos.TokenDto;
 import com.github.he305.jbot.anime.configuration.MalApiConfig;
-import com.github.he305.jbot.anime.dtos.TokenDto;
 import com.github.he305.jbot.anime.exceptions.NetworkException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
