@@ -24,4 +24,25 @@ public class AnimeSeries {
     public AnimeSeries(int listId, TitleInfo titleInfo, AiringDate date, AiringStatus airingStatus, String imageUrl) {
         this(listId, titleInfo, date, new ListInfo(ListStatus.UNKNOWN), airingStatus, imageUrl);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(titleInfo.getMainTitle());
+        sb.append(": ");
+        sb.append("current status: ");
+        sb.append(airingStatus.label);
+        if (date.getStartDate() != null) {
+            sb.append(", start date: ");
+            sb.append(date.getStartDate());
+        }
+        if (date.getEndDate() != null) {
+            sb.append(", end date: ");
+            sb.append(date.getEndDate());
+        }
+
+        sb.append(" url: ");
+        sb.append(imageUrl);
+        return sb.toString();
+    }
 }
