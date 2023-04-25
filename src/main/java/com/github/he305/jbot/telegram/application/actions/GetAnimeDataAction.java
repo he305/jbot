@@ -3,17 +3,17 @@ package com.github.he305.jbot.telegram.application.actions;
 import com.github.he305.jbot.anime.application.factories.AnimeDataProviderFactory;
 import com.github.he305.jbot.anime.application.services.AnimeDataProvider;
 import com.github.he305.jbot.anime.domain.model.AnimeSeries;
-import com.github.he305.jbot.telegram.application.services.GetUserByContextQuery;
 import com.github.he305.jbot.user.domain.model.enums.AnimeListType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.abilitybots.api.objects.MessageContext;
 
+import java.util.Optional;
+
 @Component
 @RequiredArgsConstructor
 public class GetAnimeDataAction implements SingleReplyAction {
 
-    private final GetUserByContextQuery getUserByContextQuery;
     private final AnimeDataProviderFactory animeDataProviderFactory;
 
     @Override
@@ -36,7 +36,10 @@ public class GetAnimeDataAction implements SingleReplyAction {
         String animeTitle = String.join(" ", argArray);
 
         AnimeDataProvider provider = animeDataProviderFactory.getAnimeDataProvider(AnimeListType.MYANIMELIST);
-        AnimeSeries series = provider.getAnimeData(animeTitle);
-        return series.toString();
+        Optional<AnimeSeries> series = provider.getAnimeData(animeTitle);
+        if (series.isEmpty()) {
+            return "Couldn't find any anime with provided title";
+        }
+        return series.get().toString();
     }
 }
