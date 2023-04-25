@@ -10,6 +10,7 @@ import com.github.he305.jbot.anime.domain.model.values.AiringDate;
 import com.github.he305.jbot.anime.domain.model.values.TitleInfo;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -83,7 +84,7 @@ class MalAnimeEntryMapperImplTest {
     }
 
     @Test
-    void dtoToDomain_ok_not_started() {
+    void dtoToDomain_ok_not_started_normal_date() {
         int id = 123;
         String title = "title";
         AiringStatus airingStatus = AiringStatus.NOT_STARTED;
@@ -92,7 +93,7 @@ class MalAnimeEntryMapperImplTest {
         AnimeSeries expected = new AnimeSeries(
                 id,
                 new TitleInfo(title, Set.of()),
-                new AiringDate(null, null),
+                new AiringDate(LocalDate.parse("2020-02-02"), null),
                 airingStatus,
                 image
         );
@@ -104,7 +105,7 @@ class MalAnimeEntryMapperImplTest {
                 new AlternativeTitlesDto(new String[]{}, "", ""),
                 new BroadcastDto("w", "st"),
                 "not_started",
-                null,
+                "2020-02-02",
                 null,
                 null,
                 13

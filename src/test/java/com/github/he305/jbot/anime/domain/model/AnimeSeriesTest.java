@@ -44,4 +44,18 @@ class AnimeSeriesTest {
         String actual = first.toString();
         assertEquals(expected, actual);
     }
+
+    @Test
+    void test_toString_nullDates() {
+        AnimeSeries first = new AnimeSeries(123,
+                new TitleInfo("1", Set.of()),
+                new AiringDate(null, null),
+                AiringStatus.NOT_STARTED,
+                "image");
+
+        String expected = "1\nCurrent status: not started, url: image";
+
+        String actual = first.toString();
+        assertEquals(expected, actual);
+    }
 }
