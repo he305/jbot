@@ -29,7 +29,7 @@ public class AnimeSeries {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(titleInfo.getMainTitle());
-        sb.append("\ncurrent status: ");
+        sb.append("\nCurrent status: ");
         sb.append(airingStatus.label);
         if (date.getStartDate() != null) {
             sb.append(", start date: ");
@@ -40,7 +40,7 @@ public class AnimeSeries {
             sb.append(date.getEndDate());
         }
 
-        sb.append(" url: ");
+        sb.append(", url: ");
         sb.append(imageUrl);
         return sb.toString();
     }
