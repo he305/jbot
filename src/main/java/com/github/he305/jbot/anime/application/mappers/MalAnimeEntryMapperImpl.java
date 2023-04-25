@@ -8,6 +8,7 @@ import com.github.he305.jbot.anime.domain.model.values.TitleInfo;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,14 +29,25 @@ public class MalAnimeEntryMapperImpl implements MalAnimeEntryMapper {
         }
     }
 
+    private LocalDate parseDate(String str) {
+        try {
+            return str == null ? null : LocalDate.parse(str);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+
     @Override
     public AnimeSeries dtoToDomain(MalAnimeListEntryDto dto) {
         Set<String> synonyms = new HashSet<>(Arrays.asList(dto.getAlternativeTitlesDto().getSynonyms()));
         synonyms.add(dto.getAlternativeTitlesDto().getEn());
         synonyms.add(dto.getAlternativeTitlesDto().getJa());
 
-        LocalDate startDate = dto.getStartDate() == null ? null : LocalDate.parse(dto.getStartDate());
-        LocalDate endDate = dto.getEndDate() == null ? null : LocalDate.parse(dto.getEndDate());
+        // Remove empty string
+        synonyms.remove("");
+
+        LocalDate startDate = parseDate(dto.getStartDate());
+        LocalDate endDate = parseDate(dto.getEndDate());
 
         return new AnimeSeries(
                 dto.getId(),
