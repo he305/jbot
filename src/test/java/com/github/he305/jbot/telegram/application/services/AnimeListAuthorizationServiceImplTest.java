@@ -1,7 +1,7 @@
 package com.github.he305.jbot.telegram.application.services;
 
+import com.github.he305.jbot.anime.application.dtos.TokenDto;
 import com.github.he305.jbot.anime.application.services.MalAuthenticationService;
-import com.github.he305.jbot.anime.dtos.TokenDto;
 import com.github.he305.jbot.user.domain.abstractions.UserService;
 import com.github.he305.jbot.user.domain.model.User;
 import com.github.he305.jbot.user.domain.model.entities.AnimeListInfo;

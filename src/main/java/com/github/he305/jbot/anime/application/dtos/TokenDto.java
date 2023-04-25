@@ -1,4 +1,4 @@
-package com.github.he305.jbot.anime.dtos;
+package com.github.he305.jbot.anime.application.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

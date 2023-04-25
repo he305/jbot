@@ -30,4 +30,32 @@ class AnimeSeriesTest {
 
         assertEquals(first, second);
     }
+
+    @Test
+    void test_toString() {
+        AnimeSeries first = new AnimeSeries(123,
+                new TitleInfo("1", Set.of()),
+                new AiringDate(LocalDate.EPOCH, LocalDate.EPOCH),
+                AiringStatus.NOT_STARTED,
+                "image");
+
+        String expected = "1\nCurrent status: not started, start date: 1970-01-01, end date: 1970-01-01, url: image";
+
+        String actual = first.toString();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void test_toString_nullDates() {
+        AnimeSeries first = new AnimeSeries(123,
+                new TitleInfo("1", Set.of()),
+                new AiringDate(null, null),
+                AiringStatus.NOT_STARTED,
+                "image");
+
+        String expected = "1\nCurrent status: not started, url: image";
+
+        String actual = first.toString();
+        assertEquals(expected, actual);
+    }
 }
