@@ -29,8 +29,7 @@ public class AnimeSeries {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(titleInfo.getMainTitle());
-        sb.append(": ");
-        sb.append("current status: ");
+        sb.append("\ncurrent status: ");
         sb.append(airingStatus.label);
         if (date.getStartDate() != null) {
             sb.append(", start date: ");
